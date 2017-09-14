@@ -1,0 +1,42 @@
+version: "3"
+services:
+  ghost:
+    image: ghost
+    container_name: blog-app
+    expose:
+      - "$GHOST_PORT"
+    restart: always
+    volumes:
+      - ghost_content:/var/lib/ghost/content
+      - $GHOST_THEME:/var/lib/ghost/content/themes/BitKnown
+      - $GHOST_CONFIG:/var/lib/ghost/config.production.json
+    environment:
+      - VIRTUAL_HOST=$BLOG_HOST,www.$BLOG_HOST
+      - LETSENCRYPT_HOST=$BLOG_HOST
+      - LETSENCRYPT_EMAIL=$EMAIL
+      - NODE_ENV=production
+    depends_on:
+      - db
+    networks:
+      - nginx_frontend
+      - blog_backend
+  
+  db:
+    image: mysql
+    container_name: blog-db
+    volumes:
+      - blog_db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=$GHOST_DB_PASSWORD
+      - MYSQL_DATABASE=$GHOST_DB_NAME
+    networks:
+      - blog_backend
+
+networks:
+  nginx_frontend:
+    external: true
+  blog_backend:
+
+volumes:
+  ghost_content:
+  blog_db: 
