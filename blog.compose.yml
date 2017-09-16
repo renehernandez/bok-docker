@@ -24,6 +24,7 @@ services:
   db:
     image: mysql
     container_name: blog-db
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
       - blog_db:/var/lib/mysql
     environment:
