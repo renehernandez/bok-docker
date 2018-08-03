@@ -1,7 +1,7 @@
 version: "3.6"
 services:
   gaia:
-    image: gaia
+    image: gaiapipeline/gaia
     container_name: gaia-ci
     expose: 
       - "$GAIA_PORT"
