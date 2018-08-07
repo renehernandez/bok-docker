@@ -1,8 +1,8 @@
 version: "3.6"
 services:
-  gaia:
+  jenkins:
     image: jenkins/jenkins:lts
-    container_name: jenkins
+    container_name: jenkins-ci
     expose: 
       - "$JENKINS_PORT"
     restart: always
