@@ -1,0 +1,23 @@
+version: "3.6"
+services:
+  gaia:
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+    expose: 
+      - "$JENKINS_PORT"
+    restart: always
+    volumes:
+      - jenkins_home:/var/jenkins_home
+    environment:
+      - VIRTUAL_HOST=$JENKINS_HOST,www.$JENKINS_HOST
+      - LETSENCRYPT_HOST=$JENKINS_HOST
+      - LETSENCRYPT_EMAIL=$EMAIL
+    networks:
+      - nginx_frontend
+
+networks:
+  nginx_frontend:
+    external: true
+
+volumes:
+  jenkins_home:
