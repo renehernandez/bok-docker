@@ -11,6 +11,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - VIRTUAL_HOST=$JENKINS_HOST,www.$JENKINS_HOST
+      - VIRTUAL_PORT=$JENKINS_PORT
       - LETSENCRYPT_HOST=$JENKINS_HOST
       - LETSENCRYPT_EMAIL=$EMAIL
     networks:
