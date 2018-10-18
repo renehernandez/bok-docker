@@ -1,13 +1,13 @@
 version: "3.6"
 services:
   jenkins:
-    image: jenkins/jenkins:lts
-    container_name: jenkins-ci
+    image: jenkins/evergreen:docker-cloud
+    container_name: jenkins-evergreen
     expose: 
       - "$JENKINS_PORT"
     restart: always
     volumes:
-      - jenkins_home:/var/jenkins_home
+      - jenkins-evergreen-data:/evergreen/data
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - VIRTUAL_HOST=$JENKINS_HOST,www.$JENKINS_HOST
@@ -22,4 +22,4 @@ networks:
     external: true
 
 volumes:
-  jenkins_home:
+  jenkins-evergreen-data:
