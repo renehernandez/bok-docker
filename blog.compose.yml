@@ -1,14 +1,17 @@
 version: "3"
 services:
   ghost:
-    image: ghost
+    image: renehr9102/bitknown_ghost
     container_name: blog-app
     expose:
       - "$GHOST_PORT"
     restart: always
     volumes:
-      - ghost_content:/var/lib/ghost/content
-      - $GHOST_THEME:/var/lib/ghost/content/themes/BitKnown
+      - ghost_content_apps:/var/lib/ghost/content/apps
+      - ghost_content_data:/var/lib/ghost/content/data
+      - ghost_content_images:/var/lib/ghost/content/images
+      - ghost_content_logs:/var/lib/ghost/content/logs
+      - ghost_content_settings:/var/lib/ghost/content/settings
       - $GHOST_CONFIG:/var/lib/ghost/config.production.json
     environment:
       - VIRTUAL_HOST=$BLOG_HOST,www.$BLOG_HOST
@@ -25,6 +28,7 @@ services:
     image: mysql
     container_name: blog-db
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    restart: always
     volumes:
       - blog_db:/var/lib/mysql
     environment:
@@ -39,5 +43,9 @@ networks:
   blog_backend:
 
 volumes:
-  ghost_content:
-  blog_db: 
+  blog_db:
+  ghost_content_apps:
+  ghost_content_data:
+  ghost_content_images:
+  ghost_content_logs:
+  ghost_content_settings:

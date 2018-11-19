@@ -1,6 +1,6 @@
 # Bok_Docker
 
-This repo contains a set of *docker-compose* files that can be use to have running in no time several applications in a server.
+This repo contains a set of *docker-compose* files that can be used to have running in a ghost blog in a server.
 
 ## Using .env file
 
@@ -12,7 +12,7 @@ Following the ideas from the post [Automated Nginx Reverse Proxy for Docker/](ht
 
 ## Blog Compose
 
-Compose file for running the [ghost blog](https://ghost.org/) 
+Compose file for running the [ghost blog](https://ghost.org/) using the [bitknown theme](https://github.com/renehernandez/BitKnown)
 
 ## Jenkins Compose
 
